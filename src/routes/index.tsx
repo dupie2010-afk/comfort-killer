@@ -1,8 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { convexQuery } from "@convex-dev/react-query";
-import { api } from "../../convex/_generated/api";
 import { 
   ChevronRight, 
   ArrowRight,
@@ -12,7 +9,6 @@ import {
   TrendingUp,
   Target
 } from "lucide-react";
-import * as React from "react";
 import { useRef } from "react";
 
 export const Route = createFileRoute("/")({
@@ -38,9 +34,7 @@ function RouteComponent() {
     <div className="bg-black text-white selection:bg-brand-red selection:text-white overflow-x-hidden font-sans antialiased">
       <Hero />
       <ProtocolSection />
-      <React.Suspense fallback={<div className="h-96 bg-black flex items-center justify-center"><div className="w-8 h-8 border-2 border-brand-red border-t-transparent animate-spin rounded-full" /></div>}>
-        <TestimonialSection />
-      </React.Suspense>
+      <TestimonialSection />
       <MovementSection />
       <FinalCTA />
     </div>
@@ -224,10 +218,7 @@ function ProtocolFeature({ title, desc }: { title: string, desc: string }) {
 }
 
 function TestimonialSection() {
-  const { data: testimonials } = useSuspenseQuery(convexQuery(api.testimonials.listVisible, {}));
-  const visibleTestimonials = testimonials;
-
-  const displayTestimonials = visibleTestimonials.length > 0 ? visibleTestimonials : [
+  const displayTestimonials = [
     {
       name: "Marcus T.",
       role: "Entrepreneur",

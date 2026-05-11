@@ -1,8 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { useMutation } from "convex/react";
-import { api } from "../../convex/_generated/api";
 
 export const Route = createFileRoute("/products")({
   component: ProductsPage,
@@ -11,17 +9,13 @@ export const Route = createFileRoute("/products")({
 function ProductsPage() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const subscribe = useMutation(api.leads.subscribe);
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    try {
-      await subscribe({ email });
-      setSubmitted(true);
-    } catch (error) {
-      console.error(error);
-    }
+    // Static handling
+    setSubmitted(true);
+    console.log("Subscription attempt (static):", email);
   };
 
   return (

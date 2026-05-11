@@ -15,9 +15,6 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as PurchaseSuccessRouteImport } from './routes/purchase/success'
-import { Route as PurchaseCancelRouteImport } from './routes/purchase/cancel'
-import { Route as DownloadOrderIdRouteImport } from './routes/download/$orderId'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -49,21 +46,6 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PurchaseSuccessRoute = PurchaseSuccessRouteImport.update({
-  id: '/purchase/success',
-  path: '/purchase/success',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PurchaseCancelRoute = PurchaseCancelRouteImport.update({
-  id: '/purchase/cancel',
-  path: '/purchase/cancel',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DownloadOrderIdRoute = DownloadOrderIdRouteImport.update({
-  id: '/download/$orderId',
-  path: '/download/$orderId',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -72,9 +54,6 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
   '/terms': typeof TermsRoute
-  '/download/$orderId': typeof DownloadOrderIdRoute
-  '/purchase/cancel': typeof PurchaseCancelRoute
-  '/purchase/success': typeof PurchaseSuccessRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -83,9 +62,6 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
   '/terms': typeof TermsRoute
-  '/download/$orderId': typeof DownloadOrderIdRoute
-  '/purchase/cancel': typeof PurchaseCancelRoute
-  '/purchase/success': typeof PurchaseSuccessRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -95,33 +71,12 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/products': typeof ProductsRoute
   '/terms': typeof TermsRoute
-  '/download/$orderId': typeof DownloadOrderIdRoute
-  '/purchase/cancel': typeof PurchaseCancelRoute
-  '/purchase/success': typeof PurchaseSuccessRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/about'
-    | '/contact'
-    | '/privacy'
-    | '/products'
-    | '/terms'
-    | '/download/$orderId'
-    | '/purchase/cancel'
-    | '/purchase/success'
+  fullPaths: '/' | '/about' | '/contact' | '/privacy' | '/products' | '/terms'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/about'
-    | '/contact'
-    | '/privacy'
-    | '/products'
-    | '/terms'
-    | '/download/$orderId'
-    | '/purchase/cancel'
-    | '/purchase/success'
+  to: '/' | '/about' | '/contact' | '/privacy' | '/products' | '/terms'
   id:
     | '__root__'
     | '/'
@@ -130,9 +85,6 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/products'
     | '/terms'
-    | '/download/$orderId'
-    | '/purchase/cancel'
-    | '/purchase/success'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -142,9 +94,6 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ProductsRoute: typeof ProductsRoute
   TermsRoute: typeof TermsRoute
-  DownloadOrderIdRoute: typeof DownloadOrderIdRoute
-  PurchaseCancelRoute: typeof PurchaseCancelRoute
-  PurchaseSuccessRoute: typeof PurchaseSuccessRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -191,27 +140,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/purchase/success': {
-      id: '/purchase/success'
-      path: '/purchase/success'
-      fullPath: '/purchase/success'
-      preLoaderRoute: typeof PurchaseSuccessRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/purchase/cancel': {
-      id: '/purchase/cancel'
-      path: '/purchase/cancel'
-      fullPath: '/purchase/cancel'
-      preLoaderRoute: typeof PurchaseCancelRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/download/$orderId': {
-      id: '/download/$orderId'
-      path: '/download/$orderId'
-      fullPath: '/download/$orderId'
-      preLoaderRoute: typeof DownloadOrderIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -222,9 +150,6 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ProductsRoute: ProductsRoute,
   TermsRoute: TermsRoute,
-  DownloadOrderIdRoute: DownloadOrderIdRoute,
-  PurchaseCancelRoute: PurchaseCancelRoute,
-  PurchaseSuccessRoute: PurchaseSuccessRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
